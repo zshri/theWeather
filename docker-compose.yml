@@ -1,0 +1,19 @@
+version: '3'
+
+volumes:
+  postgres_data:
+    driver: local
+
+services:
+
+  postgres-weather:
+    container_name: postgres-weather
+    image: postgres:14-alpine
+    volumes:
+      - .volumes/postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: postgres-db
+      POSTGRES_USER: sa
+      POSTGRES_PASSWORD: 12
+    ports:
+      - 5432:5432

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <th:block th:include="~{fragments :: meta}"></th:block>
+</head>
+<body>
+
+<div th:insert="~{fragments :: header-bar}"></div>
+
+
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <form id="login-form" method="POST" style="width: 300px;">
+
+            <div style="margin-top: 40px; margin-bottom: 40px"><h1>Login</h1></div>
+
+            <div th:if="${alert}" style="color: red">alert: <span th:text="${alert}"></span></div>
+
+            <div class="form-outline mb-4">
+                <input type="text" id="formLogin1" name="login" class="form-control"/>
+                <label class="form-label" for="formLogin1">Your Name</label>
+            </div>
+
+            <div class="form-outline mb-4">
+                <input type="password" id="formLogin2" name="password" class="form-control"/>
+                <label class="form-label" for="formLogin2">Password</label>
+            </div>
+
+            <button type="submit" class="btn btn-dark btn-block mb-4" style="width: 100%;">Login</button>
+
+            <div class="text-center">
+                <p>Not a member? <a href="/theWeather/registration">Register</a></p>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+</body>
+</html>

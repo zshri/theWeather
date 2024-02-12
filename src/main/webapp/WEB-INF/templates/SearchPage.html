@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search</title>
+    <th:block th:include="~{fragments :: meta}"></th:block>
+</head>
+<body>
+
+<div th:insert="~{fragments :: header-bar}"></div>
+
+<div class="container" style="display: flex; flex-direction: column; justify-content: flex-start; height: calc(100vh - 55px);">
+
+    <div th:insert="~{fragments :: search-bar}"></div>
+
+
+    <div th:insert="~{fragments :: weather-data-list}"></div>
+
+    <div th:insert="~{fragments :: footer}" style="margin-top: auto;"></div>
+
+</div>
+
+</body>
+</html>

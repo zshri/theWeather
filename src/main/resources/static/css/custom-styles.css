@@ -1,0 +1,18 @@
+body {
+    overflow: scroll;
+}
+
+input, textarea, select, button {
+    /*box-shadow: none !important;*/
+}
+
+.header-bar-btn {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.25);
+    border: rgba(0, 0, 0, 0.25);
+}
+

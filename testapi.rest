@@ -1,0 +1,21 @@
+GET https://api.openweathermap.org/data/2.5/weather?lat=55.7522&lon=37.6156&appid=967c5a32565c37fd7a4b60968098d49c
+Accept: application/json
+
+###
+GET https://api.openweathermap.org/geo/1.0/direct?q=Saint Peterburg&limit=5&appid=a59d216ccc6d4ffb3d83e15a7646535c
+Accept: application/json
+
+###
+GET https://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=a59d216ccc6d4ffb3d83e15a7646535c
+Accept: application/json
+
+###
+GET https://api.openweathermap.org/data/2.5/weather?q=sertolovo&units=metric&appid=967c5a32565c37fd7a4b60968098d49c
+Accept: application/json
+
+###
+
+GET https://api.openweathermap.org/data/2.5/find?q=london&type=like&units=metric&sort=population&cnt=30&appid=967c5a32565c37fd7a4b60968098d49c
+Accept: application/json
+
+

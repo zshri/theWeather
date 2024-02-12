@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!--todo integrity-->
+
+<div th:fragment="weather-data-list">
+    <div class="d-flex justify-content-center" style="">
+
+        <div th:if="${exception}">
+            <div th:text="|Error: ${exception}|"></div>
+        </div>
+
+        <div th:if="${weatherData}" style="width: 800px">
+
+            <div th:each="city : ${weatherData.list}" class="" style="margin-bottom: 50px;">
+
+                <div style="display: flex; align-items: start; ">
+                    <div style="flex: 3; display: flex">
+                        <h4><p th:text="|${city.getName()}, ${city.getSys().getCountry()}|"></p></h4>
+                        <div style="margin-left: 10px">
+                            <p th:text="|${city.getCoord().getLat()}, ${city.getCoord().getLon()}|"></p>
+                        </div>
+                    </div>
+
+                    <div th:if="${userId}">
+                        <div th:if="${userQuery}">
+                            <div style="flex: 1; text-align: right;">
+                                <a th:href="|/theWeather/location/add?&lon=${city.getCoord().getLon()}&lat=${city.getCoord().getLat()}&name=${city.getName()},${city.getSys().getCountry()}|">
+                                    <button class="btn btn-outline-dark header-bar-btn" type="button" style=""
+                                            th:text="add"></button>
+                                </a>
+                            </div>
+                        </div>
+                        <div th:unless="${userQuery}">
+                            <div style="flex: 1; text-align: right;">
+                                <a th:href="|/theWeather/location/remove?id=${city.getLocationId()}|">
+                                    <button class="btn btn-outline-dark header-bar-btn" type="button" style=""
+                                            th:text="remove"></button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: baseline; margin-bottom: 20px">
+                    <div>
+                        <img th:src="@{'/resources/static/img/' + ${city.getWeather().get(0).getIcon()} + '.png' }"
+                             alt="Weather Icon" style="width: 75px; height: 75px;"/>
+                    </div>
+                    <div>
+                        <p th:text="|${city.getMain().getTemp()}&deg; C|"
+                           style="font-size: 30px; font-weight: normal;"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div th:unless="${weatherData}" style="width: 800px" class="d-flex justify-content-center">
+            <h3>error: api down</h3>
+        </div>
+
+    </div>
+</div>
+
+<th:block th:fragment="meta">
+    <meta name="description" content="Мое описание">
+    <meta name="keywords" content="ключевые слова">
+    <meta name="author" content="Мой автор">
+    <meta charset="UTF-8">
+    <link rel="icon" href="../resources/static/img/cloud-sun-fill.svg"
+          th:href="@{/resources/static/img/cloud-sun-fill.svg}" type="image/svg+xml">
+    <link rel="shortcut icon" href="../resources/static/img/cloud-sun-fill.svg"
+          th:href="@{/resources/static/img/cloud-sun-fill.svg}" type="image/svg+xml">
+    <link rel="stylesheet" href="../resources/static/css/bootstrap.min.css"
+          th:href="@{/resources/static/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="../resources/static/css/custom-styles.css"
+          th:href="@{/resources/static/css/custom-styles.css}"/>
+    <script src="../resources/static/js/bootstrap.js" th:src="@{/resources/static/js/bootstrap.js}"
+            integrity=“sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p”
+            crossorigin=“anonymous”></script>
+</th:block>
+
+<div th:fragment="header-bar">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <div class="container-fluid">
+            <div>
+                <a class="navbar-brand" href="/theWeather">theWeather</a>
+            </div>
+
+            <div th:if="${userId}">
+                <!--                <div>UserId: <span th:text="${userId}"></span></div>-->
+                <button class="btn btn-outline-dark header-bar-btn" type="button">
+                    <span th:text="${userName}"></span>
+                </button>
+
+                <a href="/theWeather/logout" class="btn btn-dark header-bar-btn">Logout</a>
+
+            </div>
+            <div th:unless="${userId}">
+                <a href="/theWeather/login" class="btn btn-outline-dark header-bar-btn">Login</a>
+                <a href="/theWeather/registration" class="btn btn-dark header-bar-btn">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div th:fragment="search-bar">
+    <div class="d-flex justify-content-center" style="margin-top: 30px; margin-bottom: 30px">
+        <form class="input-group mb-3" style="width: 800px;" action="search" method="get">
+            <input type="text" class="form-control" th:placeholder="${searchPlaceholder}" th:value="${userQuery}"
+                   aria-label="Поиск" aria-describedby="button-addon3" name="q">
+            <button class="btn btn-dark" type="submit" id="button-addon3">Search</button>
+        </form>
+    </div>
+</div>
+
+<div th:fragment="footer" style="margin-top: 30px; margin-bottom: 30px" class="d-flex justify-content-center">
+    <div th:text="| 2023 The Weather by @zshri|"></div>
+</div>
+
+
+</body>
+</html>
